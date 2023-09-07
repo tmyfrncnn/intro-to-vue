@@ -20,13 +20,24 @@
           </div>
           <div class="product-info">
             <h1>{{ product }}</h1>
-            <p>{{description}}</p>
+            <p>{{ description }}</p>
 
             <p v-if="inventory > 20">In Stock</p>
-            <p v-else-if="inventory <= 15 && inventory > 0">Almost out of Stock!</p>
+            <p class="inventory" v-else-if="inventory <= 15 && inventory > 0">Almost out of Stock!</p>
             <p v-else>Out of Stock</p>
 
-            <p style="color: red;" class="sale" v-show="onSale">Sale!</p>
+            <p class="sale" v-show="onSale">On Sale!</p>
+
+            <ul>
+              <li v-for="details in details">{{ details }}</li>
+            </ul>
+            
+            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+
+            <ul>
+              <li v-for="(sizes, index) in sizes" :key="index">{{ sizes }}</li>
+            </ul>
+
 
             <a :href="url">Socks.com</a>
           </div>
