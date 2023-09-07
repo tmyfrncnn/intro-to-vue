@@ -96,6 +96,16 @@ p {
   font-size: 22px;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #84cf6a;
+  /* cursor: pointer; */
+}
+
 .product-display {
   display: flex;
   flex-direction: column;
@@ -111,6 +121,14 @@ p {
 .product-image,
 .product-info {
   width: 50%;
+}
+
+.product-info .sale {
+  color: red;
+}
+
+.product-info .inventory {
+  color: orange;
 }
 
 .review-form {
