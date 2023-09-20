@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>Vue Mastery</title>
+
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
+
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+
   </head>
   <body>
     <div id="app">
       <div class="nav-bar"></div>
       <div class="cart">Cart({{ cart }})</div>
-      
-      <div class="product-display">
+      <product-display :premium="premium"></product-display>
+      <product-display :premium="premium"></product-display>
+      <product-display></product-display>
+
+      <!-- <div class="product-display">
         <div class="product-container">
           <div class="product-image"
           :class=" { 'out-of-stock-img': !inStock }">
@@ -23,6 +29,7 @@
             <h1>{{ title }}</h1>
             <p>{{ description }}</p>
             <p> {{ sale }}</p>
+            <product-display></product-display>
 
             <p v-if="inventory > 15">In Stock</p>
             <p class="inventory" v-else-if="inventory <= 15 && inventory > 0">Almost out of Stock!</p>
@@ -57,10 +64,17 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
+
+    </div>
 
     <!-- Import App  -->
     <script src="./main.js"></script>
+
+    <!-- Import Components  -->
+    <script src="./components/ProductDisplay.js"></script>
+
+    <script src="./components/ProductDetails.js"></script>
 
     <!-- Mount App  -->
     <script>
