@@ -2,7 +2,7 @@ app.component('product-display', {
     props: {
         premium: {
             type: Boolean,
-            require: true
+            required: true
         }
     },
     template:
@@ -28,19 +28,30 @@ app.component('product-display', {
                 <li v-for="detail in details">{{ detail }}</li>
             </ul>
 
-            <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)"
-                class="color-circle" :style="{ backgroundColor: variant.color }">
+            <div 
+                v-for="(variant, index) in variants" 
+                :key="variant.id" 
+                @mouseover="updateVariant(index)"
+                class="color-circle" :style="{ backgroundColor: variant.color }"
+            >
             </div>
 
             <ul>
                 <li v-for="(size, sizeIndex) in sizes" :key="sizeIndex">{{ size }}</li>
             </ul>
 
-            <button class="button" :class="{ disabledButton: !inStock }" :disabled="!inStock" @click="addToCart">
+            <button
+                class="button"
+                :class="{ disabledButton: !inStock }" :disabled="!inStock"
+                v-on:click="addToCart">
                 Add to Cart
             </button>
 
-            <button class="button" @click="cart = cart > 0 ? cart - 1 : 0">Remove Item</button>
+            <button
+                class="button"
+                v-on:click="removeFromCart">
+                    Remove Item
+            </button>
 
             <a :href="url">Socks.com
             </a>
@@ -65,7 +76,8 @@ app.component('product-display', {
 
             sizes: ['S', 'M', 'L', 'XL', ],
 
-            variants: [{
+            variants: [
+                {
                     id: 2234,
                     color: 'green',
                     image: './assets/images/socks_green.jpg',
@@ -83,14 +95,18 @@ app.component('product-display', {
 
     methods: {
         addToCart() {
-            this.cart += 1;
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
         },
 
-        removeFromCart() {
-            if (this.cart > 0) {
-                this.cart -= 1;
-            }
+        removeFromCart () {
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].id)
         },
+
+        // removeFromCart() {
+        //     if (this.cart > 0) {
+        //         this.cart -= 1;
+        //     }
+        // },
 
         updateVariant(index) {
             this.selectedVariant = index
